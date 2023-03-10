@@ -8,13 +8,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  
 } from "react-router-dom";
 
 function App() {
 
   const [mode, setmode] = useState('info-subtle');  //by previous set -> light mode
   const [alert, setalert] = useState(null);
+  
   const [modetext, setmodetext] = useState('Dark Mode');
   const [mystyle, setmystyle] = useState({
     color: 'black',   //light mode onn
@@ -74,27 +75,32 @@ function App() {
   }
 
   return (
-    <>
+  <>
+  <Router>
+    
       
-        <Navbar title="Textutils" input1="Home" input2="About Us" modes={mode} togglemode={togglemode} modetext={modetext} />
+        <Navbar title="Textutils" input1="Home" input2="About Us" modes={mode} key={new Date()} togglemode={togglemode} modetext={modetext} />
         <Alert alert={alert} />
         
         <div className="container my-3">
-        <Router>
+        
         <Switch>
-          <Route path="/about">
-          <About modes={mode} mystyle={mystyle} mystylebtn={mystylebtn} />
-          </Route>
-          <Route path="/">
-          <Textform modes={mode} showalert={showalert} />
-          </Route>
+
+          <Route exact path="/about">
+          <About modes={mode} mystyle={mystyle} mystylebtn={mystylebtn}/></Route>
+          
+          <Route exact path="/">
+          <Textform modes={mode} showalert={showalert} /></Route>
+          
         </Switch>
-        </Router>
+        
               
         </div>
       
+    
+    </Router>
     </>
-  );
+    );
 }
 
 export default App;

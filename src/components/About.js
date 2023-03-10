@@ -1,4 +1,4 @@
-// import React, { useState, useSyncExternalStore } from 'react'
+import React from 'react'
 
 export default function About(props) {
 
